@@ -10,10 +10,8 @@ export function Hero() {
             Tax every robotic task.<br />At every level of government.
           </h1>
           <p className="text-base text-muted leading-relaxed mb-8 max-w-[480px]">
-            RoboToll tracks the work performed by self-checkout kiosks, driverless
-            vehicles, and humanoid robots &mdash; machines that fully replace human
-            jobs &mdash; then applies federal, state, and local taxes per task so
-            governments collect revenue and businesses stay compliant.
+            Track work performed by self-checkout kiosks, driverless vehicles, and
+            humanoid robots. Apply federal, state, and local taxes per task.
           </p>
           <div className="flex gap-3 flex-wrap">
             <a href="#for-government" className="bg-primary text-white text-sm font-semibold px-6 py-3 rounded-md hover:bg-primary-hover transition-colors">

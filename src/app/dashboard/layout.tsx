@@ -1,4 +1,7 @@
+"use client";
+
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 
 const navSections = [
   {
@@ -37,6 +40,8 @@ export default function DashboardLayout({
 }: {
   children: React.ReactNode;
 }) {
+  const pathname = usePathname();
+
   return (
     <>
       {/* Top bar */}
@@ -50,7 +55,7 @@ export default function DashboardLayout({
             &larr; Home
           </Link>
           <span className="text-[10px] font-bold uppercase bg-warning text-white px-2 py-0.5 rounded">
-            Preview
+            Demo
           </span>
           <span className="text-[13px] text-[#d1d5db]">Admin User</span>
         </div>
@@ -64,15 +69,22 @@ export default function DashboardLayout({
               <div className="text-[10px] font-bold uppercase text-muted tracking-wider px-5 py-1">
                 {section.label}
               </div>
-              {section.links.map((link) => (
-                <Link
-                  key={link.href}
-                  href={link.href}
-                  className="block text-[13px] px-5 py-1.5 text-foreground hover:bg-surface-warm border-l-3 border-transparent hover:border-primary transition-all"
-                >
-                  {link.text}
-                </Link>
-              ))}
+              {section.links.map((link) => {
+                const isActive = pathname === link.href;
+                return (
+                  <Link
+                    key={link.href}
+                    href={link.href}
+                    className={`block text-[13px] px-5 py-1.5 border-l-3 transition-all ${
+                      isActive
+                        ? "text-primary font-semibold bg-primary-light border-primary"
+                        : "text-foreground hover:bg-surface-warm border-transparent hover:border-primary"
+                    }`}
+                  >
+                    {link.text}
+                  </Link>
+                );
+              })}
             </div>
           ))}
         </nav>
