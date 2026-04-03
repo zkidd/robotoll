@@ -41,11 +41,13 @@ export default function DashboardLayout({
   children: React.ReactNode;
 }) {
   const pathname = usePathname();
+  const env = process.env.NEXT_PUBLIC_ENV || "development";
+  const isStaging = env === "staging";
 
   return (
     <>
       {/* Top bar */}
-      <header className="fixed top-0 left-0 right-0 h-[52px] bg-dark-bg text-white flex items-center justify-between px-5 z-50">
+      <header className={`fixed top-0 left-0 right-0 h-[52px] text-white flex items-center justify-between px-5 z-50 ${isStaging ? "bg-[#1a2332]" : "bg-dark-bg"}`}>
         <div className="flex items-center gap-3">
           <Link href="/dashboard" className="text-lg font-bold">RoboToll</Link>
           <span className="text-xs text-muted">Robotic Task Taxation Platform</span>
@@ -54,8 +56,8 @@ export default function DashboardLayout({
           <Link href="/" className="text-muted text-[13px] hover:text-white transition-colors">
             &larr; Home
           </Link>
-          <span className="text-[10px] font-bold uppercase bg-warning text-white px-2 py-0.5 rounded">
-            Demo
+          <span className={`text-[10px] font-bold uppercase text-white px-2 py-0.5 rounded ${isStaging ? "bg-blue-600" : env === "production" ? "bg-success" : "bg-warning"}`}>
+            {env === "production" ? "Production" : isStaging ? "Staging" : "Demo"}
           </span>
           <span className="text-[13px] text-[#d1d5db]">Admin User</span>
         </div>
